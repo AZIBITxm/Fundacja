@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twoja Strona</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero-content h1 {
+            position: relative;
+            top: -2mm;
+            left: 2mm;
+        }
+        .btn-play-music {
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1rem;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pasek nawigacyjny -->
+    <header>
+        <div class="logo">
+            <img src="obrazy/logo.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#o-nas">O Nas</a></li>
+                <li><a href="#projekty">Projekty</a></li>
+                <li><a href="#produkty">Produkty</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+        <button id="play-music" class="btn-play-music" onclick="playMusic()">Odtwórz muzykę</button>
+    </header>
+    
+    <!-- Sekcja hero -->
+    <section id="home" class="hero">
+        <video autoplay muted class="hero-video">
+            <source src="filmy/slonce.mp4" type="video/mp4">Twoja przeglądarka nie obsługuje elementu wideo.
+        </video>
+        <div class="hero-content">
+            <h1>MAKE IT A BETTER PLACE.</h1>
+            <img src="obrazy/logo.png" alt="Logo" class="logo-large">
+            <a href="#produkty" class="btn">Poznaj ofertę</a>
+        </div>
+    </section>
+    
+    <!-- Dodanie muzyki -->
+    <audio id="background-music">
+        <source src="muzyka/1.mp3" type="audio/mpeg">Twoja przeglądarka nie obsługuje elementu audio.
+    </audio>
+    
+    <!-- Sekcja "Nasze działania" -->
+    <section id="dzialania" class="dzialania-section">
+        <h2 class="dzialania-title">Nasze działania</h2>
+        <div class="dzialania-grid">
+            <div class="dzialanie-card dzialanie-mini">
+                <div class="opis">
+                    Naszym priorytetem jest zapewnienie dostępu do profesjonalnej pomocy psychologicznej dla dzieci, młodzieży, dorosłych oraz weteranów. Realizujemy to poprzez konsultacje indywidualne, terapie grupowe oraz programy wsparcia dedykowane poszczególnym grupom.
+                </div>
+                <h3>Wsparcie psychologiczne</h3>
+                
+                <div class="hover-texts">
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon phone">☎️</div>
+                        <div class="hover-text-content">Masz pytanie? Zadzwoń do nas - numery telefonów znajdziesz po kliknięciu w baner.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon chat">💬</div>
+                        <div class="hover-text-content">Możesz z nami porozmawiać na każdy temat: rodzinny, biznesowy, osobisty.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon target">🎯</div>
+                        <div class="hover-text-content">Przekierujemy Cię do odpowiedniego specjalisty.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon calendar">📅</div>
+                        <div class="hover-text-content">Dostępne terminy konsultacji: kliknij baner, aby je sprawdzić.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dzialanie-card dzialanie-mini">
+                <div class="opis">
+                    Prowadzimy działania edukacyjne, warsztaty i szkolenia z zakresu zdrowia psychicznego, rozwoju osobistego oraz kompetencji społecznych dla dzieci, młodzieży i dorosłych.
+                </div>
+                <h3>Edukacja i rozwój</h3>
+                
+                <div class="hover-texts">
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon search">🔍</div>
+                        <div class="hover-text-content">Zapoznaj się z projektami, nad którymi aktualnie pracujemy.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon participate">🙋</div>
+                        <div class="hover-text-content">Chcesz wziąć udział w projekcie? Skontaktuj się z nami.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon support">💰</div>
+                        <div class="hover-text-content">Wesprzyj projekt finansowo lub jako wolontariusz.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon info">ℹ️</div>
+                        <div class="hover-text-content">Formalne procedury i dokumenty znajdziesz po kliknięciu w baner.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dzialanie-card dzialanie-mini">
+                <div class="opis">
+                    Organizujemy wydarzenia integracyjne, spotkania tematyczne oraz projekty społeczne, które mają na celu budowanie więzi i wzmacnianie lokalnych społeczności.
+                </div>
+                <h3>Integracja społeczna</h3>
+                
+                <div class="hover-texts">
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon community">👥</div>
+                        <div class="hover-text-content">Dołącz do naszej społeczności – kliknij w baner!</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon whatsapp">📱</div>
+                        <div class="hover-text-content">Zapraszamy do naszej grupy wsparcia na WhatsApp.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon support">🤝</div>
+                        <div class="hover-text-content">Otrzymuj wsparcie, ale też bądź wsparciem dla innych: Dziel się swoją wiedzą i doświadczeniem z innymi i sam korzystaj z doświadczeń naszej społeczności i ekspertów.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon calendar">📅</div>
+                        <div class="hover-text-content">Dowiedz się o naszych spotkaniach online i w plenerze – terminy znajdziesz na tej stronie.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dzialanie-card dzialanie-mini">
+                <div class="opis">
+                    Wspieramy weteranów oraz ich rodziny poprzez dedykowane programy wsparcia, konsultacje oraz działania na rzecz poprawy jakości życia po służbie.
+                </div>
+                <h3>Wsparcie dla weteranów</h3>
+                
+                <div class="hover-texts">
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon veteran">📞</div>
+                        <div class="hover-text-content">Jesteś żołnierzem weteranem potrzebujesz wsparcia? Skontaktuj się z nami.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon volunteer">💪</div>
+                        <div class="hover-text-content">Dołącz do nas – zaangażować się mogą zarówno weterani, ich bliscy, jak i osoby, które mogą udzielić wsparcia technicznego czy finansowego. Twój wkład ma znaczenie!</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon project">🎯</div>
+                        <div class="hover-text-content">Poznaj nasze aktualne działania związane z tym projektem.</div>
+                    </div>
+                    <div class="hover-text-line">
+                        <div class="hover-text-icon info">📄</div>
+                        <div class="hover-text-content">Wszystkie dane dotyczące projektu znajdziesz po kliknięciu w baner.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+  
+    
+    <!-- Sekcja O nas - PRZENIESIONA TUTAJ -->
+    <section id="o-nas" class="about">
+      
+        <div class="container fade-in">
+            <div class="about-content">
+                
+                <div class="about-visible">
+                    <p class="fade-in-delayed">Od dwóch lat budujemy bezpieczną przystań dla tych, którzy czują się zagubieni. W małych społecznościach lokalnych uczyliśmy się, jak słuchać bez oceniania i jak pomagać w walce z wewnętrznymi demonami.
+                    Dziś – z bagażem tych doświadczeń – ruszamy z misją, by nasze projekty objęły całą Polskę i Europę, czerpiąc z doświadczeń jednych dla dobra drugich.</p>
+                    
+                    <p class="fade-in-delayed">Specjalizujemy się w dwóch głównych obszarach: po pierwsze, w pomocy młodym ludziom, szczególnie nastolatkom, zagrożonym samotnością w cyfrowym świecie, uzależnieniami od technologii i poczuciem wykluczenia. Po drugie – w wspieraniu rodziców w radzeniu sobie z wyzwaniami wychowawczymi.
+                    Jako organizacja nie jesteśmy obojętni na konflikty zbrojne w regionie i ich potencjalną eskalację, dlatego równie ważnym kierunkiem naszych działań jest pomoc weteranom w odnalezieniu spokoju po przeżytych traumach.</p>
+                </div>
+                
+                <div class="about-expand-btn">
+                    <button id="expandBtn" class="expand-button fade-in-delayed">
+                        <span class="expand-text">ZOBACZ WSZYSTKIE</span>
+                        <span class="expand-arrow">→</span>
+                    </button>
+                </div>
+                
+                <div class="about-hidden" id="hiddenContent">
+                    <p class="fade-in-delayed">Zapraszamy psychologów, darczyńców i instytucje do współpracy: pomóżcie nam budować ogólnopolską sieć specjalistycznej pomocy i tworzyć lepsze jutro.</p>
+                    
+                    <p class="fade-in-delayed">„Bo tylko ci, którzy są na tyle szaleni, by sądzić, że mogą zmienić świat, są tymi, którzy to robią" (Steve Jobs).</p>
+                    
+                    <p class="fade-in-delayed">Wierzymy, że nasze innowacyjne podejście do pomocy innym może inspirować do tworzenia podobnych inicjatyw. Chcemy być iskrą, która rozpala zmianę w myśleniu.
+                    Pamiętamy słowa kenijskiego ekologa Wangari Maathai: "Ziemi nie dziedziczymy po przodkach – pożyczamy ją od naszych dzieci". Dlatego z głęboką odpowiedzialnością budujemy system wsparcia psychologicznego, który będzie trwałym dziedzictwem dla przyszłych pokoleń.
+                    Jeśli podzielasz tę wizję świata, w którym nikt nie pozostaje sam ze swoimi trudnościami, dołącz do nas! Właśnie wkraczamy w nowy etap rozwoju, gdzie Twoja współpraca może stać się częścią systemowej zmiany. Wspólnie przekształcimy odważne idee w rzeczywistość, która realnie wspiera tysiące osób.</p>
+                    
+                    <p class="fade-in-delayed">• Skorzystaj z pomocy psychologicznej: Bezpłatna konsultacja – nasz doradca pomoże dobrać formę wsparcia<br>
+                    • Poznaj nasze programy: Zobacz, jak zmieniamy świat</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- W sekcji O nas, po div.about-content -->
+        <video class="about-video" autoplay muted loop>
+            <source src="filmy/ziemia.mp4" type="video/mp4">
+            Twoja przeglądarka nie obsługuje elementu wideo.
+        </video>
+    </section>
+    
+    <!-- Sekcja Projekty -->
+    <section id="projekty" class="projekty">
+        <div class="container fade-in">
+            <h2 class="fade-in-delayed">Projekty</h2>
+            <p class="fade-in-delayed">Nasze projekty są skierowane na rozwój technologii i wsparcie społeczności. Pracujemy nad różnorodnymi inicjatywami, które mają na celu poprawę jakości życia i wprowadzenie innowacyjnych rozwiązań.</p>
+            <div class="kafelki">
+                <div class="kafelek fade-in-delayed">
+                    <h3>Młodzież</h3>
+                    <p>Opis projektu dotyczącego młodzieży.</p>
+                </div>
+                <div class="kafelek fade-in-delayed">
+                    <h3>Weterani</h3>
+                    <p>Opis projektu dotyczącego weteranów.</p>
+                </div>
+                <div class="kafelek fade-in-delayed">
+                    <h3>Technologie</h3>
+                    <p>Opis projektu dotyczącego technologii.</p>
+                </div>
+                <div class="kafelek fade-in-delayed">
+                    <h3>Dodatki</h3>
+                    <p>Opis projektu dotyczącego dodatków.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Przejście z białego do szarego -->
+    <section class="transition transition-white-to-gray"></section>
+    
+    <!-- Sekcja kontakt -->
+    <section id="kontakt" class="kontakt">
+        <div class="container fade-in">
+            <h2 class="fade-in-delayed">Kontakt</h2>
+            <form action="#" method="post">
+                <label for="name" class="fade-in-delayed">Imię i nazwisko:</label>
+                <input type="text" id="name" name="name" required class="fade-in-delayed">
+                <label for="email" class="fade-in-delayed">Email:</label>
+                <input type="email" id="email" name="email" required class="fade-in-delayed">
+                <label for="message" class="fade-in-delayed">Wiadomość:</label>
+                <textarea id="message" name="message" rows="5" required class="fade-in-delayed"></textarea>
+                <button type="submit" class="btn fade-in-delayed">Wyślij</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Przejście z białego do szarego -->
+    <section class="transition transition-white-to-gray"></section>
+    
+    <!-- Stopka -->
+    <footer>
+        <div class="container fade-in">
+            <p class="fade-in-delayed">© 2025 Twoja Firma</p>
+            <div class="social fade-in-delayed">
+                <a href="#"><img src="icon-facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="icon-twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="icon-instagram.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        function playMusic() {
+            const backgroundMusic = document.getElementById('background-music');
+            backgroundMusic.volume = 1;
+            backgroundMusic.play().catch(error => {
+                console.error('Muzyka nie mogła zostać odtworzona:', error);
+            });
+        }
+
+        window.addEventListener('load', function() {
+            document.getElementById('play-music').click();
+        });
+    </script>
+</body>
+</html>

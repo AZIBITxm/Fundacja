@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasza Misja i Wartości | Fundacja WorldFoundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #f6f8fc;
+        }
+        .misja-header {
+            background: linear-gradient(135deg, #5e6ae4 0%, #4fd1c5 100%);
+            color: #fff;
+            padding: 48px 0 24px 0;
+            text-align: center;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        .misja-header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 25% 25%, #fff1 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, #fff1 0%, transparent 50%);
+            opacity: 0.15;
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-30px) rotate(360deg); }
+        }
+        .misja-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 10px 60px 10px;
+        }
+        .module {
+            background: #eaf7e6; /* ZMIANA: jasna zieleń z palety strony */
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            margin-bottom: 50px;
+            padding: 40px 32px 32px 32px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(0) scale(0.98);
+            transition: 
+                opacity 0.7s cubic-bezier(.4,0,.2,1),
+                transform 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        .module.visible {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        .module.left {
+            background: #f6f8fc; /* ZMIANA: bardzo jasny niebieski z palety strony */
+            transform: translateX(-80px) scale(0.98);
+        }
+        .module.right {
+            background: #eaf0fa; /* ZMIANA: jasny niebieski z palety strony */
+            transform: translateX(80px) scale(0.98);
+        }
+        .module.visible.left,
+        .module.visible.right {
+            transform: translateX(0) scale(1);
+        }
+        .module h2 {
+            color: #5e6ae4;
+            margin-top: 0;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .module ul {
+            padding-left: 20px;
+        }
+        .misja-img {
+            width: 100%;
+            max-width: 320px;
+            display: block;
+            margin: 0 auto 30px auto;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .misja-wartosci {
+            background: #ebf2fb;
+            border-radius: 12px;
+            padding: 24px 20px;
+            margin-top: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .misja-wartosci h3 {
+            color: #5e6ae4;
+            margin-top: 0;
+        }
+        .dzialania-section {
+            margin: 80px 0 0 0; /* zwiększona przestrzeń nad sekcją */
+            width: 100vw;
+            max-width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0 0 60px 0;
+            background: #fff; /* ZMIANA: tło na białe */
+        }
+        .dzialania-title {
+            font-size: 2.2rem;
+            color: #5e6ae4;
+            margin-bottom: 36px;
+            margin-top: 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s, transform 0.8s;
+            text-align: center; /* wyśrodkowanie nagłówka */
+            padding-top: 40px;  /* dodatkowa przestrzeń nad napisem */
+        }
+        .dzialania-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 36px;
+        }
+        .dzialanie-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 32px 20px 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(60px) scale(0.97);
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        .dzialanie-img-wrap {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 18px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(94,106,228,0.13);
+            background: #f6f8fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dzialanie-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .dzialanie-card:hover .dzialanie-img {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        .dzialanie-card h3 {
+            color: #5e6ae4;
+            font-size: 1.18rem;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+        .dzialanie-card p {
+            color: #222;
+            font-size: 1rem;
+            margin: 0;
+        }
+        .dzialanie-mini {
+            min-height: 80px;
+            height: 80px;
+            max-width: 260px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px rgba(94,106,228,0.07);
+        }
+        .dzialanie-mini h3 {
+            font-size: 1.08rem;
+            margin: 0;
+            color: #5e6ae4;
+            font-weight: 700;
+            text-align: center;
+        }
+        .dzialania-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 36px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 32px;
+        }
+        .dzialanie-card.dzialanie-mini {
+            background: linear-gradient(135deg, #5e6ae4 0%, #7f8ff4 100%);
+            border: 2px solid #eaf0fa;
+            box-shadow: 0 8px 32px rgba(94,106,228,0.18), 0 2px 8px rgba(94,106,228,0.13), 0 0 0 4px #f6f8fc inset;
+            color: #fff;
+            opacity: 0;
+            transform: scale(0.7) rotate(-8deg) translateY(60px);
+            transition:
+                box-shadow 0.3s cubic-bezier(.4,0,.2,1),
+                border 0.3s,
+                background 0.3s,
+                color 0.3s,
+                transform 0.7s cubic-bezier(.4,0,.2,1),
+                opacity 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        .dzialanie-card.dzialanie-mini:nth-child(2) {
+            background: linear-gradient(135deg, #69b833 0%, #b6e388 100%);
+            border: 2px solid #eaf7e6;
+            box-shadow: 0 8px 32px rgba(105,184,51,0.13), 0 2px 8px rgba(105,184,51,0.10), 0 0 0 4px #eaf7e6 inset;
+        }
+        .dzialanie-card.dzialanie-mini:nth-child(3) {
+            background: linear-gradient(135deg, #eaf0fa 0%, #5e6ae4 100%);
+            border: 2px solid #7f8ff4;
+            box-shadow: 0 8px 32px rgba(126,143,244,0.13), 0 2px 8px rgba(126,143,244,0.10), 0 0 0 4px #eaf0fa inset;
+        }
+        .dzialanie-card.dzialanie-mini:nth-child(4) {
+            background: linear-gradient(135deg, #5e6ae4 0%, #4fd1c5 100%);
+            border: 2px solid #b6e388;
+            box-shadow: 0 8px 32px rgba(79,209,197,0.13), 0 2px 8px rgba(79,209,197,0.10), 0 0 0 4px #eaf7e6 inset;
+        }
+        .dzialanie-card.dzialanie-mini h3 {
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.13);
+        }
+        .dzialanie-card.dzialanie-mini:hover {
+            box-shadow: 0 16px 48px rgba(94,106,228,0.28), 0 8px 24px rgba(94,106,228,0.18), 0 0 0 6px #fff inset;
+            border-color: #69b833;
+        }
+        @media (max-width: 700px) {
+            .main-content { padding: 20px 2px 40px 2px; }
+            .module, .module.left, .module.right {
+                margin: 0 0 30px 0;
+                padding: 24px 8px 20px 8px;
+                transform: translateX(0) scale(0.98);
+            }
+            .dzialania-section { padding: 0 2px 40px 2px; }
+            .dzialania-title { font-size: 1.3rem; }
+            .dzialanie-card { padding: 18px 6px 16px 6px; }
+            .dzialanie-img-wrap { width: 56px; height: 56px; }
+            .dzialanie-card.dzialanie-mini {
+                width: 110px;
+                height: 110px;
+                font-size: 0.95rem;
+                padding: 0 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#o-nas">O Nas</a></li>
+                <li><a href="index.html#projekty">Projekty</a></li>
+                <li><a href="index.html#produkty">Produkty</a></li>
+                <li><a href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="misja-header visible">
+        <h1>Nasza Misja i Wartości</h1>
+    </section>
+    <main class="main-content">
+        <section class="module left">
+            <h2>Historia i Rozwój Fundacji</h2>
+            <p>
+                <strong>Fundacja WorldFoundation</strong> powstała w odpowiedzi na coraz większe zapotrzebowanie na wsparcie od strony psychologicznej w społeczeństwie, wynikające z rosnących wyzwań emocjonalnych, z którymi zmaga się wiele osób. Zainspirowana potrzebą stworzenia bezpiecznej przystani dla wszystkich, którzy potrzebują pomocy, fundacja od początku swojego istnienia stawia na budowanie empatycznej, wspierającej się wzajemnie społeczności.
+            </p>
+        </section>
+        <section class="module right">
+            <h2>Nasze Cele</h2>
+            <p>
+                <strong>Od samego początku</strong> naszym celem było stworzenie miejsca, w którym każdy, bez względu na okoliczności, może znaleźć pomoc i zrozumienie. Nasze pierwsze projekty skupiały się na wsparciu dzieci i młodzieży w szkołach, a z czasem rozszerzyliśmy naszą działalność na inne grupy społeczne, w tym weteranów i osoby dorosłe.
+            </p>
+            <p>
+                <strong>Obecnie</strong> rozwijamy naszą działalność na niemal wszystkie kraje Europy oraz Ameryki Północnej, ponieważ chcemy, aby osoby z różnych kontynentów mogły lepiej zrozumieć i docenić wartość wzajemnej pomocy oraz spojrzeć na świat z perspektywy innych osób, którzy zmagają się z podobnymi problemami.
+            </p>
+        </section>
+        <section class="module left">
+            <div class="misja-wartosci">
+                <h2>Wartości, którymi się kierujemy</h2>
+                <ul>
+                    <li><strong>Empatia:</strong> Każda osoba, która zgłasza się do nas po pomoc, może liczyć na zrozumienie i indywidualne podejście.</li>
+                    <li><strong>Profesjonalizm:</strong> Nasze działania opierają się na wiedzy i doświadczeniu specjalistów nie tylko z zakresu psychologii i terapii, ale także innych dziedzin życia.</li>
+                    <li><strong>Powszechna dostępność:</strong> Wierzymy, że wsparcie psychologiczne powinno być dostępne dla każdego, dlatego wprowadziliśmy darmowe opcje "Szybkiej Porady" oraz Osobę Prowadzącą.</li>
+                    <li><strong>Współpraca:</strong> Budujemy relacje oparte na zaufaniu i współpracy, zarówno z osobami potrzebującymi pomocy, jak i z partnerami oraz darczyńcami.</li>
+                </ul>
+            </div>
+        </section>
+        <section class="dzialania-section">
+            <h2 class="dzialania-title">Nasze działania</h2>
+            <div class="dzialania-grid">
+                <div class="dzialanie-card dzialanie-mini"><h3>Wsparcie psychologiczne<br>i emocjonalne</h3></div>
+                <div class="dzialanie-card dzialanie-mini"><h3>Edukacja<br>i profilaktyka</h3></div>
+                <div class="dzialanie-card dzialanie-mini"><h3>Budowanie<br>społeczności</h3></div>
+                <div class="dzialanie-card dzialanie-mini"><h3>Wsparcie dla<br>rodzin i dzieci</h3></div>
+            </div>
+        </section>
+    </main>
+    <footer style="background:#041f35; color:#ebf2fb; padding: 40px 0 0 0; font-family: 'DM Sans', Arial, sans-serif; position:relative; overflow:hidden;">
+        <!-- Tło z mapą świata -->
+        <img src="obrazy/8b2e7e6e2b8c8e7e2e8b8c8e7e2b8c8e7.webp" alt="" aria-hidden="true"
+             style="position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover; opacity:0.13; pointer-events:none; z-index:0; filter:brightness(0.9) grayscale(1);">
+        <div style="position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:0 20px;">
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px;">
+                <div style="flex:1 1 220px; min-width:220px; margin-bottom:30px;">
+                    <h3 style="color:#69b833; font-size:1.2rem; margin-bottom:12px;">WorldFoundation</h3>
+                    <p style="color:#ebf2fb;">Tworzymy lepsze jutro poprzez wsparcie psychologiczne, edukację i budowanie autentycznych relacji. Nasza misja to przełamywanie barier i promowanie szacunku, bezpieczeństwa oraz radości życia. Dołącz do nas i wspólnie twórzmy świat pełen empatii i zrozumienia.</p>
+                </div>
+                <div style="flex:1 1 180px; min-width:180px; margin-bottom:30px;">
+                    <h3 style="color:#69b833; font-size:1.2rem; margin-bottom:12px;">Linki</h3>
+                    <ul style="list-style:none; padding:0; margin:0;">
+                        <li><a href="misja.html" style="color:#ebf2fb; text-decoration:none;">O Fundacji</a></li>
+                        <li><a href="index.html#projekty" style="color:#ebf2fb; text-decoration:none;">Projekty</a></li>
+                        <li><a href="index.html#produkty" style="color:#ebf2fb; text-decoration:none;">Sklep Fundacji</a></li>
+                        <li><a href="index.html#kontakt" style="color:#ebf2fb; text-decoration:none;">Skontaktuj się</a></li>
+                    </ul>
+                    <div style="margin-top:18px;">
+                        <a href="#" style="margin-right:10px;"><img src="icon-facebook.png" alt="Facebook" style="width:24px;vertical-align:middle;"></a>
+                        <a href="#" style="margin-right:10px;"><img src="icon-twitter.png" alt="Twitter" style="width:24px;vertical-align:middle;"></a>
+                        <a href="#"><img src="icon-instagram.png" alt="Instagram" style="width:24px;vertical-align:middle;"></a>
+                    </div>
+                </div>
+                <div style="flex:1 1 180px; min-width:180px; margin-bottom:30px;">
+                    <h3 style="color:#69b833; font-size:1.2rem; margin-bottom:12px;">Kontakt</h3>
+                    <p style="margin:0 0 8px 0;">info@worldfoundation.eu</p>
+                    <p style="margin:0 0 8px 0;">+48 605 126 918</p>
+                    <p style="margin:0;">+49 152 194 594 13</p>
+                </div>
+            </div>
+            <div style="border-top:1px solid #002f30; margin-top:30px; padding-top:18px; text-align:center; color:#999ea4; font-size:0.95rem;">
+                © 2024 Worldfoundation Zychowicz. Wszelkie prawa zastrzeżone.<br>
+                Strona stworzona w <a href="https://najszybsza.pl/" target="_blank" style="color:#69b833;">Najszybsza.pl</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Animacja wjazdu modułów w miarę przewijania strony – pojawiają się tylko raz
+        function isInCenterViewport(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            const elemCenter = rect.top + rect.height / 2;
+            return (elemCenter > windowHeight * 0.3 && elemCenter < windowHeight * 0.7);
+        }
+
+        function showModulesOnScroll() {
+            document.querySelectorAll('.module').forEach(function(module) {
+                if (!module.classList.contains('visible') && isInCenterViewport(module)) {
+                    module.classList.add('visible');
+                }
+            });
+            // Baner zawsze widoczny
+            document.querySelector('.misja-header').classList.add('visible');
+        }
+
+        window.addEventListener('scroll', showModulesOnScroll);
+        window.addEventListener('resize', showModulesOnScroll);
+        window.addEventListener('DOMContentLoaded', showModulesOnScroll);
+    </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animacja pojawiania się sekcji "Nasze działania"
+    const dzialaniaTitle = document.querySelector('.dzialania-title');
+    const dzialanieCards = document.querySelectorAll('.dzialanie-card');
+    function animateDzialania() {
+        const section = document.querySelector('.dzialania-section');
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (rect.top < windowHeight - 80) {
+            dzialaniaTitle.style.opacity = 1;
+            dzialaniaTitle.style.transform = 'translateY(0)';
+            dzialanieCards.forEach((card, i) => {
+                setTimeout(() => {
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0) scale(1)';
+                }, 180 + i * 120);
+            });
+            window.removeEventListener('scroll', animateDzialania);
+        }
+    }
+    window.addEventListener('scroll', animateDzialania);
+    animateDzialania();
+});
+</script>
+</body>
+</html>
