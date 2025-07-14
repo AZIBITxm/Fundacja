@@ -32,6 +32,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (event.animationName === 'fadeOut') {
       heroLogo.style.display = 'block';
       heroLogo.style.animation = 'fadeInLogo 3s ease-out forwards';
+
+      // Ustaw rozmiar logo względem kontenera hero
+      function scaleLogo() {
+        const hero = document.querySelector('.hero');
+        if (hero && heroLogo) {
+          const heroWidth = hero.offsetWidth;
+          heroLogo.style.width = (heroWidth * 0.4) + 'px'; // 40% szerokości hero
+          heroLogo.style.height = 'auto';
+        }
+      }
+      scaleLogo();
+      window.addEventListener('resize', scaleLogo);
     }
   });
 

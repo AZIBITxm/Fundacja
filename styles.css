@@ -315,19 +315,23 @@ header nav ul li a {
 }
 
 /* HERO SECTION */
+
 .hero {
   position: relative;
-  height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  aspect-ratio: 20 / 9;
   display: flex;
-  z-index: 900;
-  padding-top: 70px;
+  align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Cień rzucający w dół */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background: #000;
+  padding-top: 70px;
   z-index: 1;
-  background: #000; /* Ciemne tło pod wideo */
 }
+
 
 .hero-video {
   position: absolute;
@@ -339,11 +343,13 @@ header nav ul li a {
   z-index: 1;
 }
 
+
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1172,6 +1178,26 @@ footer .social a {
 }
 
 /* RESPONSYWNOŚĆ */
+/* Hero baner proporcje 20:9 na mobile */
+@media (max-width: 900px) {
+  .hero {
+    aspect-ratio: 20 / 9;
+    min-height: 180px;
+    max-height: 60vw;
+    height: auto;
+  }
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
+  }
+  .hero-content {
+    width: 100%;
+    padding: 0 10px;
+    max-width: 100vw;
+  }
+}
 @media (max-width: 900px) {
   body {
     background: url('obrazy/t1.png') center center / cover no-repeat; /* Bez fixed na mobile */
