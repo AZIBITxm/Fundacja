@@ -311,8 +311,8 @@ header nav ul li a {
   position: relative;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  z-index: 900;
+  padding-top: 70px;
   justify-content: center;
   text-align: center;
   overflow: hidden;
@@ -555,17 +555,6 @@ header nav ul li a {
 }
 .side-menu.open {
   transform: translateX(0);
-}
-.side-menu .close-menu {
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  background: none;
-  border: none;
-  font-size: 2.2rem;
-  color: #333;
-  cursor: pointer;
-  z-index: 10001;
 }
 .side-menu ul {
   list-style: none;

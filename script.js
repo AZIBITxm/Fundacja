@@ -125,17 +125,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // Obsługa wysuwanego menu bocznego
   const hamburger = document.querySelector('.hamburger');
   const sideMenu = document.querySelector('.side-menu');
-  const closeMenuBtn = document.querySelector('.close-menu');
+
 
   if (hamburger && sideMenu) {
     hamburger.addEventListener('click', function() {
       sideMenu.classList.add('open');
+      hamburger.style.display = 'none';
     });
   }
 
-  if (closeMenuBtn && sideMenu) {
-    closeMenuBtn.addEventListener('click', function() {
-      sideMenu.classList.remove('open');
+
+  // Zamykanie menu po kliknięciu w link
+  if (sideMenu) {
+    sideMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        sideMenu.classList.remove('open');
+        if (hamburger) hamburger.style.display = 'flex';
+      });
     });
   }
 
@@ -147,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const isHamburger = hamburger && hamburger.contains(e.target);
       if (!isMenu && !isHamburger) {
         sideMenu.classList.remove('open');
+        if (hamburger) hamburger.style.display = 'flex';
       }
     }
   });
