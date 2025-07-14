@@ -1,0 +1,35 @@
+<!-- hamburger.htm - gotowy kod do wklejenia do nagłówka strony -->
+<header>
+  <div class="logo">
+    <!-- logo fundacji -->
+    <img src="obrazy/logo.png" alt="Fundacja Logo">
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Strona główna</a></li>
+      <li><a href="misja.html">Misja</a></li>
+      <li><a href="start.html">Start</a></li>
+      <!-- Dodaj kolejne zakładki według potrzeb -->
+    </ul>
+    <ul class="mobile-menu" id="mobileMenu">
+      <li><a href="index.html">Strona główna</a></li>
+      <li><a href="misja.html">Misja</a></li>
+      <li><a href="start.html">Start</a></li>
+      <!-- Dodaj kolejne zakładki według potrzeb -->
+    </ul>
+  </nav>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<script>
+// Hamburger menu JS
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', function() {
+  mobileMenu.classList.toggle('active');
+});
+</script>
