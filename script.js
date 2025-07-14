@@ -107,4 +107,47 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
   }
+
+  function toggleHamburger() {
+    const hamburger = document.querySelector('.hamburger');
+    if (window.innerWidth <= 900) {
+      hamburger.style.display = 'flex';
+    } else {
+      hamburger.style.display = 'none';
+    }
+  }
+
+  // Sprawdź przy starcie
+  window.addEventListener('DOMContentLoaded', toggleHamburger);
+  // Sprawdź przy każdej zmianie rozmiaru
+  window.addEventListener('resize', toggleHamburger);
+
+  // Obsługa wysuwanego menu bocznego
+  const hamburger = document.querySelector('.hamburger');
+  const sideMenu = document.querySelector('.side-menu');
+  const closeMenuBtn = document.querySelector('.close-menu');
+
+  if (hamburger && sideMenu) {
+    hamburger.addEventListener('click', function() {
+      sideMenu.classList.add('open');
+    });
+  }
+
+  if (closeMenuBtn && sideMenu) {
+    closeMenuBtn.addEventListener('click', function() {
+      sideMenu.classList.remove('open');
+    });
+  }
+
+  // Zamknięcie menu po kliknięciu w tło
+  document.addEventListener('click', function(e) {
+    if (sideMenu && sideMenu.classList.contains('open')) {
+      // Jeśli kliknięto poza menu i poza hamburgerem
+      const isMenu = sideMenu.contains(e.target);
+      const isHamburger = hamburger && hamburger.contains(e.target);
+      if (!isMenu && !isHamburger) {
+        sideMenu.classList.remove('open');
+      }
+    }
+  });
 });
