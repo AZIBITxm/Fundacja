@@ -110,9 +110,11 @@ header {
 }
 
 header.scrolled,
-header:hover {
-  background: rgba(255, 255, 255, 1);
+header.scrolled {
+  background: rgba(255,255,255,0.9);
   color: #000;
+}
+}
 }
 
 /* Logo fundacji - animowane */
@@ -122,9 +124,8 @@ header .logo {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Logo widoczne tylko gdy header ma białe tło */
-header.scrolled .logo,
-header:hover .logo {
+/* Logo widoczne tylko gdy header ma białe tło (scrolled) */
+header.scrolled .logo {
   opacity: 1;
   transform: translateX(0);
 }
@@ -372,10 +373,7 @@ header nav ul li a {
   overflow: hidden;
   cursor: pointer;
   padding: 0;
-  transition: all 0.4s ease;
-  transform: scale(1);
-  z-index: 1;
-  transform-origin: center center;
+  /* Usunięto animacje i transformacje banerów */
 }
 
 /* Cienie w narożnikach banerów */
@@ -392,29 +390,12 @@ header nav ul li a {
     radial-gradient(circle at bottom left, rgba(0,0,0,0.4) 0%, transparent 20%),
     radial-gradient(circle at bottom right, rgba(0,0,0,0.4) 0%, transparent 20%);
   opacity: 1;
-  transition: opacity 0.4s ease;
+  /* Usunięto transition cieni */
   z-index: 1;
   pointer-events: none;
 }
 
-/* Ukrycie cieni w narożnikach przy hover */
-.dzialanie-card.dzialanie-mini:hover::before {
-  opacity: 0;
-}
 
-/* Banery - hover efekty z zachowaniem niebieskich ramek */
-.dzialanie-card.dzialanie-mini:nth-child(1):hover,
-.dzialanie-card.dzialanie-mini:nth-child(2):hover,
-.dzialanie-card.dzialanie-mini:nth-child(3):hover,
-.dzialanie-card.dzialanie-mini:nth-child(4):hover {
-  filter: brightness(1.2) contrast(1.1);
-  transform: scale(1.8);
-  z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2);
-  border: 1px solid #007BFF; /* Zachowanie niebieskiej ramki przy hover */
-}
-
-/* Responsywność - zachowanie ramek na mobile */
 @media (max-width: 768px) {
   .dzialanie-card.dzialanie-mini {
     border: 1px solid #007BFF; /* Zachowanie niebieskiej ramki na mobile */
@@ -508,23 +489,8 @@ header nav ul li a {
   transform-origin: right bottom;
 }
 
-/* Banery - hover efekty */
-.dzialanie-card.dzialanie-mini:nth-child(1):hover,
-.dzialanie-card.dzialanie-mini:nth-child(2):hover,
-.dzialanie-card.dzialanie-mini:nth-child(3):hover,
-.dzialanie-card.dzialanie-mini:nth-child(4):hover {
-  filter: brightness(1.2) contrast(1.1);
-  transform: scale(1.8);
-  z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2);
-}
 
-/* Ukrywanie pozostałych banerów przy hover */
-.dzialania-grid:hover .dzialanie-card.dzialanie-mini:not(:hover) {
-  opacity: 0.3;
-  transform: scale(0.9);
-  transition: all 0.4s ease;
-}
+
 
 /* Nagłówki i opisy banerów */
 .dzialanie-card.dzialanie-mini h3 {
@@ -632,163 +598,7 @@ header nav ul li a {
   }
 }
 
-/* Hover texts - wspólne style */
-.dzialanie-card.dzialanie-mini .hover-texts {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-  z-index: 5;
-}
 
-.dzialanie-card.dzialanie-mini:hover .hover-texts {
-  opacity: 1;
-  visibility: visible;
-}
-
-.dzialanie-card.dzialanie-mini .hover-text-line {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  padding: 8px 20px;
-  background: rgba(3, 3, 3, 0.4);
-  border-radius: 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-size: 0.75rem;
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.6s ease;
-  backdrop-filter: blur(1px);
-  width: 100%;
-  box-sizing: border-box;
-  text-shadow: 
-    1px 1px 2px rgba(255, 255, 255, 0.9),
-    -1px -1px 2px rgba(255, 255, 255, 0.9),
-    1px -1px 2px rgba(255, 255, 255, 0.9),
-    -1px 1px 2px rgba(255, 255, 255, 0.9);
-}
-
-.dzialanie-card.dzialanie-mini:hover .hover-text-line:nth-child(1) {
-  opacity: 1;
-  transform: translateX(0);
-  transition-delay: 0.2s;
-}
-
-.dzialanie-card.dzialanie-mini:hover .hover-text-line:nth-child(2) {
-  opacity: 1;
-  transform: translateX(0);
-  transition-delay: 0.4s;
-}
-
-.dzialanie-card.dzialanie-mini:hover .hover-text-line:nth-child(3) {
-  opacity: 1;
-  transform: translateX(0);
-  transition-delay: 0.6s;
-}
-
-.dzialanie-card.dzialanie-mini:hover .hover-text-line:nth-child(4) {
-  opacity: 1;
-  transform: translateX(0);
-  transition-delay: 0.8s;
-}
-
-.dzialanie-card.dzialanie-mini .hover-text-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  flex-shrink: 0;
-  color: #fff;
-  text-shadow: none;
-}
-
-.dzialanie-card.dzialanie-mini .hover-text-content {
-  flex: 1;
-  font-size: 0.75rem;
-  color: #ffffff;
-  font-weight: 300;
-  text-shadow: 
-      2px 2px 6px rgba(0, 0, 0, 0.8),
-      0 0 2px rgba(0, 0, 0, 0.7),
-     0 1px 8px rgba(0, 0, 0, 0.9);
-}
-
-/* Hover texts - ikony dla poszczególnych banerów */
-.dzialanie-card.dzialanie-mini:nth-child(1) .hover-text-icon.phone {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(1) .hover-text-icon.chat {
-  background: linear-gradient(135deg, #2196F3, #1976D2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(1) .hover-text-icon.target {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(1) .hover-text-icon.calendar {
-  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(2) .hover-text-icon.search {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(2) .hover-text-icon.participate {
-  background: linear-gradient(135deg, #2196F3, #1976D2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(2) .hover-text-icon.support {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(2) .hover-text-icon.info {
-  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(3) .hover-text-icon.community {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(3) .hover-text-icon.whatsapp {
-  background: linear-gradient(135deg, #2196F3, #1976D2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(3) .hover-text-icon.support {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(3) .hover-text-icon.calendar {
-  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(4) .hover-text-icon.veteran {
-  background: linear-gradient(135deg, #4CAF50, #45a049);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(4) .hover-text-icon.volunteer {
-  background: linear-gradient(135deg, #2196F3, #1976D2);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(4) .hover-text-icon.project {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
-}
-
-.dzialanie-card.dzialanie-mini:nth-child(4) .hover-text-icon.info {
-  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
-}
 
 /* Przejście z szarego do białego */
 .transition {
@@ -855,11 +665,6 @@ header nav ul li a {
     1px 1px 2px rgba(0, 0, 0, 0.2),
     0 0 8px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
-
 .about-content {
   position: relative;
   top: 80px; /* Opuść baner o 80px w dół */

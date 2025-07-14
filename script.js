@@ -19,8 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function handleScroll() {
     if (window.scrollY > 50) {
       header.classList.add('scrolled');
+      headerLogo.style.opacity = '1';
+      headerLogo.style.transform = 'translateX(0)';
     } else {
       header.classList.remove('scrolled');
+      headerLogo.style.opacity = '0';
+      headerLogo.style.transform = 'translateX(-20px)';
     }
   }
 
@@ -42,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', checkVisibility);
   window.addEventListener('scroll', handleScroll);
+  // Wymuszone ukrycie logo na starcie
+  headerLogo.style.opacity = '0';
+  headerLogo.style.transform = 'translateX(-20px)';
   checkVisibility();
   handleScroll();
 
