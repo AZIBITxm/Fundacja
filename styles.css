@@ -115,7 +115,7 @@ header {
   background: transparent;
   color: #fff;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
@@ -158,15 +158,44 @@ header .logo img {
 
 /* Nawigacja - wyśrodkowana */
 header nav {
-  flex: 1;
   display: flex;
-  justify-content: center;
-}
-header nav {
-  display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* było center */
   width: 100%;
   grid-column: 2;
+  margin-left: 40px; /* dodane */
+}
+header nav {
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.nav-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-left: 2rem;
+  position: absolute;
+  right: 120px; /* było 60px */
+  top: 1.2rem;
+  z-index: 2002;
+}
+
+.hamburger {
+  display: none;
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 2001;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 }
 
 header nav ul {
@@ -223,9 +252,9 @@ width: auto;
 .hamburger span {
   display: block;
   height: 4px;
-  width: 100%;
+  width: 28px;
   background: #333;
-  margin: 7px 0;
+  margin: 4px 0;
   border-radius: 2px;
   transition: all 0.3s;
   opacity: 0.7;
@@ -1093,7 +1122,6 @@ footer .social a {
   body {
     background: url('obrazy/t1.png') center center / cover no-repeat; /* Bez fixed na mobile */
   }
-  
   .about {
     justify-content: center;
     padding: 40px 20px;
@@ -1101,13 +1129,11 @@ footer .social a {
     background-color: transparent !important;
     background-image: none !important;
   }
-  
   .dzialania-section {
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
   }
-  
   .about-content {
     width: 100vw;
     min-width: 100vw;
@@ -1118,26 +1144,21 @@ footer .social a {
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     margin-left: -20px;
   }
-  
   .about-content.expanding {
     animation: none;
     width: 100vw;
   }
-  
   .about h2,
   .about-visible p,
   .about-hidden p {
     text-align: center;
   }
-  
   .about-expand-btn {
     text-align: center;
   }
-  
   .about-content:hover {
     transform: none;
   }
-  
   .about-video {
     position: relative;
     top: auto;
@@ -1148,20 +1169,26 @@ footer .social a {
     margin: 20px auto 0 auto;
     display: block;
   }
-
-  /* Hamburger widoczny na mobile */
+  /* Hamburger i ikony zawsze widoczne na mobile */
   .hamburger {
-    display: block;
+    display: flex !important;
+    position: absolute;
+    right: 2rem;
+    top: 1.2rem;
+    z-index: 2001;
+  }
+  .nav-social-icons {
+    display: flex !important;
+    position: absolute;
+    right: 60px;
+    top: 1.2rem;
+    z-index: 2002;
   }
   header nav ul {
     display: none;
   }
   .mobile-menu {
     display: flex;
-  }
-  /* Ikony social media zawsze widoczne na mobile */
-  .nav-social-icons {
-    display: flex !important;
   }
 }
 
