@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburger.addEventListener('click', function() {
       sideMenu.classList.add('open');
       hamburger.style.display = 'none';
+      // Dodaj przezroczystość do headera
+      if (header) header.classList.add('header-transparent');
     });
   }
 
@@ -141,6 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', function() {
         sideMenu.classList.remove('open');
         if (hamburger) hamburger.style.display = 'flex';
+        // Usuń przezroczystość z headera
+        if (header) header.classList.remove('header-transparent');
       });
     });
   }
@@ -154,6 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!isMenu && !isHamburger) {
         sideMenu.classList.remove('open');
         if (hamburger) hamburger.style.display = 'flex';
+        // Usuń przezroczystość z headera
+        if (header) header.classList.remove('header-transparent');
       }
     }
   });

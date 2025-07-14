@@ -1,3 +1,9 @@
+/* Przezroczyste menu górne gdy otwarte boczne */
+.header-transparent {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
 /* Resetowanie stylów */
 * {
   margin: 0;
@@ -266,6 +272,8 @@ header nav ul li a {
   font-size: 16px;
   font-weight: normal;
   transition: color 0.3s;
+  position: relative !important;
+  top: 10px !important;
 }
 /* Rozwijane menu na mobile */
 .mobile-menu {
