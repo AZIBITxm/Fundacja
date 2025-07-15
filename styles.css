@@ -1,3 +1,17 @@
+/* Pasek tła za nagłówkiem sekcji o nas */
+.o-nas-title::before {
+  content: "";
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3.2rem;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  border-radius: 0;
+  pointer-events: auto;
+  width: 1000px !important;
+}
 /* Przezroczyste menu górne gdy otwarte boczne */
 .header-transparent {
   opacity: 0 !important;
@@ -488,7 +502,7 @@ header nav ul li a {
   width: 100vw;
   height: 360px;
   background:
-    linear-gradient(to bottom, rgba(255,255,255,0) 0, rgba(255,255,255,0) calc(100% - 80px), rgba(255,255,255,1) 100%),
+    linear-gradient(to bottom, rgba(255,255,255,0) 0, rgba(255,255,255,0) calc(100% - 50%), rgba(255,255,255,1) 100%),
     url('obrazy/t3.png') left top / cover no-repeat,
     #007BFF;
   background-blend-mode: normal, lighten, normal;
@@ -498,19 +512,42 @@ header nav ul li a {
 }
 
 .dzialania-section::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: auto;
-  width: 75vw;
-  height: 300px;
-  z-index: 0;
-  pointer-events: none;
-  /* Przyklej do dolnej krawędzi filmu/obrazu */
-  bottom: 0;
-  background: url('obrazy/t3.png') left top / cover no-repeat, linear-gradient(to bottom, red 0%, red 80%, rgba(255,0,0,0) 100%);
-  background-blend-mode: lighten;
-  opacity: 0.9;
+/* Usunięto czerwony prostokąt z sekcji działań */
+}
+/* Czerwony prostokąt na końcu sekcji o nas */
+.about::after {
+content: "";
+position: absolute;
+left: 0;
+right: auto;
+width: 112.5vw;
+height: 450px;
+z-index: 0;
+pointer-events: none;
+top: 0;
+background: url('obrazy/t3.png') left top / cover no-repeat;
+background-blend-mode: lighten;
+opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+  .about::after {
+    display: none !important;
+  }
+  .projekty-section::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: auto;
+    width: 112.5vw;
+    height: 450px;
+    z-index: 1;
+    pointer-events: none;
+    top: 0;
+    background: url('obrazy/t3.png') left top / cover no-repeat;
+    background-blend-mode: lighten;
+    opacity: 0.9;
+  }
 }
 
 /* Fala z gradientem na górze sekcji działań */
@@ -532,8 +569,9 @@ header nav ul li a {
 }
 
 .dzialania-title {
+  background: none !important;
   position: relative;
-  z-index: 2;
+  z-index: 90;
   font-size: 2.5rem;
   color: #ffffff;
   margin-bottom: 1rem;
@@ -544,7 +582,7 @@ header nav ul li a {
   text-align: center;
   padding: 1.4px;
   left: 180px;
-  transform: translateY(-20px);
+  top: 10px;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.18), 0 0 12px rgba(0,0,0,0.22);
   
 }
@@ -552,14 +590,14 @@ header nav ul li a {
   content: "";
   position: fixed;
   right: 0;
-  top: 50%;
+  top: calc(2.65em);
   transform: translateY(-50%);
-  width: calc(50vw + 40px);
   height: 3.2rem;
   background: rgba(0,0,0,0.5);
-  z-index: 1;
+  z-index: 20;
   border-radius: 0;
-  pointer-events: none;
+  pointer-events: auto;
+  width: 800px !important;
 }
 
   
@@ -571,7 +609,7 @@ header nav ul li a {
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 50px 40px 40px 40px;
   min-height: 600px;
   position: relative;
   z-index: 1;
@@ -580,7 +618,7 @@ header nav ul li a {
 /* Banery - podstawowe style z niebieskimi ramkami i cieniami w narożnikach */
 .dzialanie-card.dzialanie-mini {
   background: #fff;
-  border: 1px solid #007BFF; /* Żywa niebieska ramka */
+  border: 5px solid #007BFF; /* Żywa niebieska ramka */
   box-shadow: 0 8px 16px rgba(0,0,0,0.15), 0 4px 8px rgba(0,0,0,0.1);
   color: #333;
   width: 100%;
@@ -590,10 +628,20 @@ header nav ul li a {
   align-items: flex-start;
   justify-content: center;
   position: relative;
+  top: 50px;
   overflow: hidden;
   cursor: pointer;
   padding: 0;
-  /* Usunięto animacje i transformacje banerów */
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
+  transform: scale(1);
+  z-index: 1;
+  transform-origin: center center;
+}
+/* Animacja powiększania banera po najechaniu - centralnie */
+.dzialanie-card.dzialanie-mini:hover {
+  transform: scale(1.08) !important;
+  transform-origin: center center !important;
+}
 }
 
 /* Cienie w narożnikach banerów */
@@ -687,7 +735,7 @@ header nav ul li a {
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 40px 0 40px;
   min-height: 600px;
   position: relative;
   z-index: 1;
@@ -719,28 +767,24 @@ header nav ul li a {
 .dzialanie-card.dzialanie-mini:nth-child(1) {
   background: url('obrazy/b1.png') center center / cover no-repeat;
   color: #fff;
-  transform-origin: left top;
   box-shadow: 0 6px 18px 0 rgba(0,0,0,0.28), 0 1px 8px 0 rgba(0,0,0,0.18), 0 0 12px 2px rgba(0,0,0,0.22);
 }
 
 .dzialanie-card.dzialanie-mini:nth-child(2) {
   background: url('obrazy/b2.png') center center / cover no-repeat;
   color: #fff;
-  transform-origin: right top;
   box-shadow: 0 6px 18px 0 rgba(0,0,0,0.28), 0 1px 8px 0 rgba(0,0,0,0.18), 0 0 12px 2px rgba(0,0,0,0.22);
 }
 
 .dzialanie-card.dzialanie-mini:nth-child(3) {
   background: url('obrazy/b3.jpg') center center / cover no-repeat;
   color: #fff;
-  transform-origin: left bottom;
   box-shadow: 0 6px 18px 0 rgba(0,0,0,0.28), 0 1px 8px 0 rgba(0,0,0,0.18), 0 0 12px 2px rgba(0,0,0,0.22);
 }
 
 .dzialanie-card.dzialanie-mini:nth-child(4) {
   background: url('obrazy/b4.png') center center / cover no-repeat;
   color: #fff;
-  transform-origin: right bottom;
   box-shadow: 0 6px 18px 0 rgba(0,0,0,0.28), 0 1px 8px 0 rgba(0,0,0,0.18), 0 0 12px 2px rgba(0,0,0,0.22);
 }
 
@@ -764,6 +808,20 @@ header nav ul li a {
   transition: all 0.4s ease;
 }
 
+@media (max-width: 900px) {
+  .dzialanie-card.dzialanie-mini h3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 30px 18px 30px;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+
 .dzialanie-card.dzialanie-mini .opis {
   display: flex;
   color: #666;
@@ -784,6 +842,12 @@ header nav ul li a {
 
 .dzialanie-card.dzialanie-mini:hover .opis {
   opacity: 0;
+}
+
+@media (max-width: 900px) {
+  .dzialanie-card.dzialanie-mini .opis {
+    display: none !important;
+  }
 }
 
 /* Tekst w banerach ze zdjęciami */
@@ -872,8 +936,7 @@ header nav ul li a {
 /* SEKCJA O NAS */
 .about {
   position: relative;
-  top: 0; /* było: top: -40px; */
-  padding: 0 0 80px 0;
+  padding: 0;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -885,7 +948,9 @@ header nav ul li a {
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
-  z-index: 100;
+  z-index: 0;
+  
+  transform: translateY(-17px);
 }
 
 /* Wspólny kontener z tłem paralaksy */
@@ -921,8 +986,7 @@ header nav ul li a {
     0 0 8px rgba(0, 0, 0, 0.1);
 }
 .about-content {
-  position: relative;
-  top: 80px; /* Opuść baner o 80px w dół */
+position: relative;
   left: 0;
   margin: 0 auto;
   width: calc(66.67vw - 70px);
@@ -937,7 +1001,7 @@ header nav ul li a {
   transition: all 0.6s ease;
   margin-left: 0;
   margin-right: 0;
-  z-index: 101;
+  z-index: 2;
 }
 
 .about-content h2 {
@@ -1398,5 +1462,9 @@ body {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+}
+
+/* --- PRIORYTET: Dynamiczna szerokość paska za tytułem --- */
+.dzialania-title::before {
 }
 
