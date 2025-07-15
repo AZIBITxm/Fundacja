@@ -326,10 +326,15 @@ header nav ul li a {
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: none;
   background: #000;
   padding-top: 70px;
   z-index: 2;
+  border-bottom: 5px solid #007BFF;
+}
+
+.hero::after {
+
 }
 
 
@@ -466,12 +471,12 @@ header nav ul li a {
 .dzialania-section::before {
   content: "";
   position: absolute;
-  top: -60px; /* podniesiony o 80px względem poprzedniego 20px */
+  top: -120px; /* podniesiony o 120px, nachodzi na sekcję hero */
   right: 0;
   left: auto;
-  width: 75vw;
-  height: 300px;
-  background: url('obrazy/t3.png') left top / cover no-repeat, red;
+  width: 100vw;
+  height: 360px;
+  background: url('obrazy/t3.png') left top / cover no-repeat, #007BFF;
   background-blend-mode: lighten;
   z-index: 0;
   pointer-events: none;
@@ -514,7 +519,7 @@ header nav ul li a {
 
 .dzialania-title {
   font-size: 4.5rem;
-  color: #2c3e50;
+  color: #000;
   margin-bottom: 1rem;
   margin-top: 0;
   font-weight: 400;
