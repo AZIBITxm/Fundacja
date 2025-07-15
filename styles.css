@@ -1205,10 +1205,13 @@ footer .social a {
 /* Hero baner proporcje 20:9 na mobile */
 @media (max-width: 900px) {
   .hero {
-    aspect-ratio: 18 / 9;
-    min-height: 180px;
-    max-height: 60vw;
+    aspect-ratio: 1 / 1 !important;
+    width: 100vw;
     height: auto;
+    min-height: 180px;
+    max-width: 100vw;
+    max-height: 100vw;
+    background: #000;
   }
   .hero-video {
     width: 100%;
