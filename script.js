@@ -1,4 +1,57 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Cykliczne odświeżanie wysokości po resize/zoom
+  let resizeInterval = null;
+  function triggerResizeInterval() {
+    if (resizeInterval) clearInterval(resizeInterval);
+    let count = 0;
+    resizeInterval = setInterval(function() {
+      resizeDzialaniaSection();
+      count++;
+      if (count > 10) clearInterval(resizeInterval); // 10x co 300ms = 3s
+    }, 300);
+  }
+
+  window.addEventListener('resize', function() {
+    resizeDzialaniaSection();
+    triggerResizeInterval();
+  });
+
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      resizeDzialaniaSection();
+      triggerResizeInterval();
+    }
+  });
+  // Ustaw wysokość sekcji działań natychmiast po załadowaniu DOM
+  resizeDzialaniaSection();
+  // Dynamiczne ustawianie wysokości sekcji działań
+  function resizeDzialaniaSection() {
+    const dzialaniaSection = document.querySelector('.dzialania-section');
+    const lastBanner = document.querySelector('.dzialania-grid .dzialanie-card.dzialanie-mini:nth-child(4)');
+    if (dzialaniaSection && lastBanner) {
+      // Oblicz wysokość od góry sekcji do dolnej krawędzi baneru
+      const sectionRect = dzialaniaSection.getBoundingClientRect();
+      const bannerRect = lastBanner.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const sectionTop = sectionRect.top + scrollY;
+      const bannerBottom = bannerRect.bottom + scrollY;
+      const zapas = 16; // zapas na marginesy, cienie itp.
+      const newHeight = bannerBottom - sectionTop + zapas;
+      dzialaniaSection.style.height = newHeight + 'px';
+      dzialaniaSection.style.minHeight = '0'; // nadpisz min-height z CSS
+    }
+  }
+
+  // Wywołaj na starcie, przy zmianie rozmiaru okna i po animacji baneru
+  window.addEventListener('resize', resizeDzialaniaSection);
+  window.addEventListener('DOMContentLoaded', resizeDzialaniaSection);
+  document.querySelectorAll('.dzialania-grid .dzialanie-card.dzialanie-mini').forEach(function(card) {
+    card.addEventListener('transitionend', function(e) {
+      if (e.propertyName === 'transform') {
+        resizeDzialaniaSection();
+      }
+    });
+  });
   const header = document.querySelector('header');
   const elements = document.querySelectorAll('.fade-in, .fade-in-delayed');
   const headerLogo = document.querySelector('.logo');
@@ -47,14 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Ustawienie poziomu głośności muzyki na 1 i rozpoczęcie odtwarzania po załadowaniu strony
-  window.addEventListener('load', function() {
-    backgroundMusic.volume = 1;
-    console.log('Aktualna głośność muzyki:', backgroundMusic.volume);
-    backgroundMusic.play().catch(error => {
-      console.error('Muzyka nie mogła zostać odtworzona automatycznie:', error);
-    });
-  });
+
 
   window.addEventListener('scroll', checkVisibility);
   window.addEventListener('scroll', handleScroll);
@@ -64,61 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
   checkVisibility();
   handleScroll();
 
-  // Rozwijane sekcje
-  const expandBtn = document.getElementById('expandBtn');
-  const hiddenContent = document.getElementById('hiddenContent');
-  const expandText = expandBtn.querySelector('.expand-text');
-  const aboutContent = document.querySelector('.about-content');
-
-  if (expandBtn && hiddenContent && expandText && aboutContent) {
-      expandBtn.addEventListener('click', function() {
-          const video = document.querySelector('.about-video');
-          
-          if (hiddenContent.classList.contains('expanded')) {
-              // ZWIJANIE - dwuetapowe
-              // 1. Ukryj tekst
-              hiddenContent.classList.remove('expanded');
-              expandBtn.classList.remove('expanded');
-              expandText.textContent = 'ZOBACZ WSZYSTKIE';
-              
-              // 2. Animacja zwijania baneru (wysokość -> szerokość)
-              aboutContent.classList.remove('expanding');
-              aboutContent.classList.add('collapsing');
-              
-              // 3. Wjazd wideo po zakończeniu animacji (0.8s)
-              setTimeout(() => {
-                  video.classList.remove('slide-out');
-                  video.classList.add('slide-in');
-                  aboutContent.classList.remove('collapsing');
-              }, 800);
-              
-              // 4. Przewinięcie do góry
-              setTimeout(() => {
-                  document.getElementById('onas').scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
-                  });
-              }, 1000);
-              
-          } else {
-              // ROZWIJANIE - dwuetapowe
-              // 1. Natychmiastowy wyjazd wideo
-              video.classList.remove('slide-in');
-              video.classList.add('slide-out');
-              
-              // 2. Animacja rozwijania baneru (szerokość -> wysokość)
-              aboutContent.classList.remove('collapsing');
-              aboutContent.classList.add('expanding');
-              
-              // 3. Pokaż tekst po rozwinięciu baneru (0.8s)
-              setTimeout(() => {
-                  hiddenContent.classList.add('expanded');
-                  expandBtn.classList.add('expanded');
-                  expandText.textContent = 'ZWIŃ';
-              }, 800);
-          }
-      });
-  }
 
   function toggleHamburger() {
     const hamburger = document.querySelector('.hamburger');
@@ -175,4 +166,54 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+/* dynamiczne pozycjonowanie tekstu opisowego w sekcji o nas*/
+function centerInfoBox() {
+  var title = document.querySelector('.o-nas-title-copy');
+  var infoBox = document.querySelector('.o-nas-info-box');
+  if (title && infoBox) {
+    var titleRect = title.getBoundingClientRect();
+    var infoBoxRect = infoBox.getBoundingClientRect();
+    var titleCenter = titleRect.left + titleRect.width / 2;
+    var left = titleCenter - infoBoxRect.width / 2 + window.scrollX;
+    infoBox.style.left = left + 'px';
+    infoBox.style.right = 'auto';
+    infoBox.style.position = 'absolute';
+    infoBox.style.transform = 'none';
+  }
+  // Pozycjonowanie poziome .o-nas-green-box względem napisu O Nas
+  var greenBox = document.querySelector('.o-nas-green-box');
+  if (title && greenBox) {
+    var titleRect = title.getBoundingClientRect();
+    var greenBoxRect = greenBox.getBoundingClientRect();
+    var titleCenter = titleRect.left + titleRect.width / 2;
+    var left = titleCenter - greenBoxRect.width / 2 + window.scrollX;
+    greenBox.style.left = left + 'px';
+    greenBox.style.right = 'auto';
+    greenBox.style.position = 'absolute';
+    greenBox.style.transform = 'none';
+  }
+   
+}
+window.addEventListener('DOMContentLoaded', centerInfoBox);
+window.addEventListener('resize', centerInfoBox);
+
+
+function positionGreenBoxVertically() {
+  var infoBox = document.querySelector('.o-nas-info-box');
+  var greenBox = document.querySelector('.o-nas-green-box');
+  if (infoBox && greenBox) {
+    var halfInfoBoxHeight = infoBox.getBoundingClientRect().height;
+    var currentTop = parseFloat(greenBox.style.top) || greenBox.offsetTop;
+    greenBox.style.top = (halfInfoBoxHeight + 190) + 'px';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  centerInfoBox();
+  positionGreenBoxVertically();
+});
+window.addEventListener('resize', function() {
+  centerInfoBox();
+  positionGreenBoxVertically();
+});
 });
