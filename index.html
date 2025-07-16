@@ -82,7 +82,10 @@
     
     <!-- Sekcja "Nasze działania" -->
     <section id="dzialania" class="dzialania-section">
-        <h2 class="dzialania-title">Nasze działania</h2>
+        <div class="dzialania-title-bar">
+          <div class="dzialania-bar"></div>
+          <h2 class="dzialania-title">Nasze działania</h2>
+        </div>
         <div class="dzialania-grid">
             <div class="dzialanie-card dzialanie-mini">
                 <div class="opis">
@@ -123,6 +126,15 @@
     
     <!-- Sekcja O nas - PRZENIESIONA TUTAJ -->
     <section id="o-nas" class="about">
+      <video class="about-video" autoplay muted loop>
+        <source src="filmy/ziemia.mp4" type="video/mp4">
+        Twoja przeglądarka nie obsługuje elementu wideo.
+      </video>
+      <div class="o-nas-bar"></div>
+      <div class="o-nas-title-bar">
+        <span class="o-nas-title-text">Kilka słów o nas</span>
+      </div>
+      <div class="about-bg"></div>
       <div class="container fade-in">
         <div class="about-content">
           <div class="about-visible">
@@ -148,12 +160,6 @@
           </div>
         </div>
       </div>
-        
-        <!-- W sekcji O nas, po div.about-content -->
-        <video class="about-video" autoplay muted loop>
-            <source src="filmy/ziemia.mp4" type="video/mp4">
-            Twoja przeglądarka nie obsługuje elementu wideo.
-        </video>
     </section>
     
     <!-- Sekcja Projekty -->
