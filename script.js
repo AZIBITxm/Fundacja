@@ -171,49 +171,29 @@ function centerInfoBox() {
   var title = document.querySelector('.o-nas-title-copy');
   var infoBox = document.querySelector('.o-nas-info-box');
   if (title && infoBox) {
-    var titleRect = title.getBoundingClientRect();
-    var infoBoxRect = infoBox.getBoundingClientRect();
-    var titleCenter = titleRect.left + titleRect.width / 2;
-    var left = titleCenter - infoBoxRect.width / 2 + window.scrollX;
-    infoBox.style.left = left + 'px';
-    infoBox.style.right = 'auto';
-    infoBox.style.position = 'absolute';
-    infoBox.style.transform = 'none';
+    if (window.innerWidth >= 900) {
+      var titleRect = title.getBoundingClientRect();
+      var infoBoxRect = infoBox.getBoundingClientRect();
+      var titleCenter = titleRect.left + titleRect.width / 2;
+      var left = titleCenter - infoBoxRect.width / 2 + window.scrollX;
+      infoBox.style.left = left + 'px';
+      infoBox.style.right = 'auto';
+      infoBox.style.position = 'absolute';
+      infoBox.style.transform = 'none';
+    } else {
+      // Na mobile zostaw centrowanie CSS
+      infoBox.style.left = '';
+      infoBox.style.right = '';
+      infoBox.style.position = '';
+      infoBox.style.transform = '';
+    }
   }
-  // Pozycjonowanie poziome .o-nas-green-box względem napisu O Nas
-  var greenBox = document.querySelector('.o-nas-green-box');
-  if (title && greenBox) {
-    var titleRect = title.getBoundingClientRect();
-    var greenBoxRect = greenBox.getBoundingClientRect();
-    var titleCenter = titleRect.left + titleRect.width / 2;
-    var left = titleCenter - greenBoxRect.width / 2 + window.scrollX;
-    greenBox.style.left = left + 'px';
-    greenBox.style.right = 'auto';
-    greenBox.style.position = 'absolute';
-    greenBox.style.transform = 'none';
-  }
+  
    
 }
 window.addEventListener('DOMContentLoaded', centerInfoBox);
 window.addEventListener('resize', centerInfoBox);
 
 
-function positionGreenBoxVertically() {
-  var infoBox = document.querySelector('.o-nas-info-box');
-  var greenBox = document.querySelector('.o-nas-green-box');
-  if (infoBox && greenBox) {
-    var halfInfoBoxHeight = infoBox.getBoundingClientRect().height;
-    var currentTop = parseFloat(greenBox.style.top) || greenBox.offsetTop;
-    greenBox.style.top = (halfInfoBoxHeight + 190) + 'px';
-  }
-}
 
-window.addEventListener('DOMContentLoaded', function() {
-  centerInfoBox();
-  positionGreenBoxVertically();
-});
-window.addEventListener('resize', function() {
-  centerInfoBox();
-  positionGreenBoxVertically();
-});
 });
