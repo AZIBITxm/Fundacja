@@ -1,4 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Dynamiczne ustawianie wysokości sekcji O nas
+  function resizeAboutSection() {
+    const aboutSection = document.querySelector('.about');
+    if (!aboutSection) return;
+    // Znajdź ostatni widoczny element w sekcji O nas
+    let last = null;
+    const children = Array.from(aboutSection.children).filter(e => e.offsetParent !== null);
+    if (children.length > 0) {
+      last = children[children.length - 1];
+    }
+    if (last) {
+      const sectionRect = aboutSection.getBoundingClientRect();
+      const lastRect = last.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const sectionTop = sectionRect.top + scrollY;
+      const lastBottom = lastRect.bottom + scrollY;
+      const zapas = 30;
+      const newHeight = lastBottom - sectionTop + zapas;
+      aboutSection.style.height = newHeight + 'px';
+      aboutSection.style.minHeight = '0';
+    }
+  }
+
+  window.addEventListener('resize', resizeAboutSection);
+  window.addEventListener('DOMContentLoaded', resizeAboutSection);
   // Cykliczne odświeżanie wysokości po resize/zoom
   let resizeInterval = null;
   function triggerResizeInterval() {

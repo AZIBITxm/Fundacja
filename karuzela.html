@@ -1,0 +1,192 @@
+<head>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+<meta name="viewport" content="width=1000">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+<title>Responsive jQuery Carousel - Multimedia Plugin Collection - Perspective - Full Width</title>
+<meta name="description" content="Responsive jQuery Carousel - Multimedia Plugin Collection - perspective - Full Width" />
+<meta name="keywords" content="carousel, jQuery, multimedia, image, video, Responsive, fixed dimensions, full width" />
+<meta name="author" content="Lambert Group" />
+<meta name="robots" content="FOLLOW" />
+
+	
+	<link rel='stylesheet' href='http://www.jquerycarouselimagevideo.com/css/style.css' />
+	<link href="http://www.jquerycarouselimagevideo.com/css/ourproducts.css" rel="stylesheet" type="text/css" />
+	<!--[if IE 7]>
+	<link href="css/style_ie7.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+<style>
+html,body { 
+	margin:0;
+	padding:0;
+	overflow-x: hidden;
+}
+</style>    
+	
+	<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+	
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
+	
+
+
+  
+<!-- must have -->
+<link href="http://www.jquerycarouselimagevideo.com/css/multimedia_perspective_carousel.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://www.jquerycarouselimagevideo.com/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="http://www.jquerycarouselimagevideo.com/js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+<script src="http://www.jquerycarouselimagevideo.com/js/multimedia_perspective_carousel.js" type="text/javascript"></script>
+<script src="http://www.jquerycarouselimagevideo.com/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+<!-- must have -->
+<script src="http://www.jquerycarouselimagevideo.com/js/mysubmenu.js" type="text/javascript"></script>
+<script src="http://www.jquerycarouselimagevideo.com/js/myproducts.js" type="text/javascript"></script>
+	
+</head>
+
+
+
+
+<div style="padding:0px 0px 60px 0px;">  
+		<!-- BANNER START -->    
+			<script>
+		jQuery(function() {
+
+			jQuery('#multimedia_perspective_carousel_black').multimedia_perspective_carousel({
+				skin: 'black',
+				width100Proc:true,
+				responsive:true,
+				width: 1920,
+				height: 800,
+				imageWidth:900,
+				imageHeight:600,			
+				autoPlay: 7,
+				autoHideBottomNav:false,
+				showElementTitle:true,
+				titleColor:'#FFFFFF',
+				elementsHorizontalSpacing:158,
+				verticalAdjustment:80,
+				numberOfVisibleItems:7,
+				nextPrevMarginTop:23,
+				playMovieMarginTop:0,
+				bottomNavMarginBottom:-5,
+				absUrl:'perspective_skins/'
+			});
+			jQuery(document).ready(function(){
+				$("a[rel^='prettyPhoto']").prettyPhoto({
+					default_width: jQuery(window).width()/2,
+					default_height: jQuery(window).width()/2*9/16,
+					social_tools:false,
+					callback: function(){
+						$.multimedia_perspective_carousel.continueAutoplay();
+					}
+				});
+			});
+			
+		});
+		
+
+	</script>
+
+			<div id="multimedia_perspective_carousel_black">
+				<div class="myloader"></div>
+				<!-- CONTENT -->
+				<ul class="multimedia_perspective_carousel_list">
+				
+				<li data-title="Baner 1" data-bottom-thumb="obrazy/b1.png" data-large-image="obrazy/b1.png">
+  <div class="baner-vertical">
+	<div class="baner-img"><img src="obrazy/b1.png" alt="Baner 1" /></div>
+	<div class="baner-desc">Fundacja - wsparcie psychologiczne</div>
+  </div>
+</li>
+<li data-title="Baner 2" data-bottom-thumb="obrazy/b2.png" data-large-image="obrazy/b2.png">
+  <div class="baner-vertical">
+	<div class="baner-img"><img src="obrazy/b2.png" alt="Baner 2" /></div>
+	<div class="baner-desc">Edukacja i rozwój</div>
+  </div>
+</li>
+<li data-title="Baner 3" data-bottom-thumb="obrazy/b3.jpg" data-large-image="obrazy/b3.jpg">
+  <div class="baner-vertical">
+	<div class="baner-img"><img src="obrazy/b3.jpg" alt="Baner 3" /></div>
+	<div class="baner-desc">Integracja społeczna</div>
+  </div>
+</li>
+<li data-title="Baner 4" data-bottom-thumb="obrazy/b4.png" data-large-image="obrazy/b4.png">
+  <div class="baner-vertical">
+	<div class="baner-img"><img src="obrazy/b4.png" alt="Baner 4" /></div>
+	<div class="baner-desc">Wsparcie dla weteranów</div>
+  </div>
+</li>
+					  
+				</ul>    
+									   
+						   
+		   </div>        <!--END BANNER-->
+</div>
+
+<style>
+/* Wygląd banera pionowego */
+.baner-vertical {
+  width: 140px;
+  height: 280px;
+  aspect-ratio: 2/1;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #222;
+  margin: 0 12px;
+}
+.baner-img {
+  flex: 2 2 0;
+  height: 66.666%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+}
+.baner-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.baner-desc {
+  flex: 1 1 0;
+  height: 33.333%;
+  width: 100%;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  box-sizing: border-box;
+  border-top: 2px solid #111;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+@media (max-width: 600px) {
+  .baner-vertical {
+	width: 90vw;
+	height: 180px;
+	margin: 0 2vw;
+  }
+}
+</style>
+
+
+
+
+
